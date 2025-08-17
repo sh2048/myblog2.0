@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "from-read-to-remix",
+    "title": "从“能看网页”到“能改网页”",
+    "date": "2024-10-01",
+    "category": "入门",
+    "cover": "assets/blog1img.jpg",
+    "excerpt": "在项目驱动下掌握HTML/CSS/JS，完成从阅读到拆解的能力跃迁。",
+    "contentHtml": "<p>这是一篇用于教学演示的文章正文示例。你可以把课程相关的讲义、练习与代码片段放在这里。</p><h3>1. 从阅读到拆解</h3><p>学会使用浏览器 DevTools 观察结构（Elements）、样式（Styles）、网络请求（Network）。</p><h3>2. 从改动到复刻</h3><p>通过小步修改样式、替换图片、调整布局，逐步形成对页面结构的掌控感。</p><pre><code>&lt;section&gt;用语义化标签增强可访问性&lt;/section&gt;</code></pre><p>更多内容……</p>"
+  },
+  {
+    "slug": "flexbox-and-box-model",
+    "title": "Flexbox布局与盒模型调试",
+    "date": "2024-11-12",
+    "category": "布局",
+    "cover": "assets/blog2img.jpg",
+    "excerpt": "通过DevTools观察content/padding/border/margin与弹性盒布局。",
+    "contentHtml": "<p>正文示例：系统讲解Flexbox主轴/交叉轴、常用属性与调试技巧。</p><h3>1. 盒模型回顾</h3><ul><li>content</li><li>padding</li><li>border</li><li>margin</li></ul><h3>2. Flex常用属性</h3><pre><code>display: flex;\njustify-content: center;\nalign-items: center;</code></pre><p>建议学生在本页“前端演示”中更改下拉框选项并打开 DevTools 观察布局变化。</p>"
+  }
+]
