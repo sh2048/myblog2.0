@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="教学用开源个人博客（SPA版），覆盖HTML/CSS/JS课程要点与文章详情" />
+  <title>My Blog · 教学增强版（SPA）</title>
+
+  <!-- Bootstrap 5 CSS & Icons (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link href="styles/core.css" rel="stylesheet" />
+</head>
+<body>
+  <!-- header/nav 语义化 -->
+  <header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light container">
+      <a class="navbar-brand" href="#"><i class="bi bi-pencil-square"></i> My Blog</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navMain" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#/">文章</a></li>
+          <li class="nav-item"><a class="nav-link" href="#/contact">联系表单</a></li>
+          <li class="nav-item"><a class="nav-link" href="#/demo">前端演示</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 顶部 banner —— 按要求文字 -->
+  <section class="top-img text-white d-flex align-items-center">
+    <div class="container py-5">
+      <h1 class="display-5 fw-bold">web前端教学</h1>
+      <p class="lead mb-0">HTML/CSS/JS</p>
+    </div>
+  </section>
+
+  <main id="main-content" class="container my-5">
+    <!-- 列表视图：posts（卡片与表格由 JS 动态渲染） -->
+    <section id="posts" aria-labelledby="posts-title" class="mb-5">
+      <h2 id="posts-title" class="mb-4">精选文章</h2>
+
+      <div class="row g-4"><!-- 动态卡片挂载点 --></div>
+
+      <aside class="alert alert-secondary mt-4" role="note">
+        <strong>提示：</strong> 本列表通过脚本从 <code>assets/articles.json</code> 自动渲染。
+      </aside>
+
+      <div class="mt-4">
+        <h3 class="h5 mb-3">文章一览（表格示例）</h3>
+        <div class="table-responsive">
+          <table class="table table-striped align-middle">
+            <thead>
+              <tr>
+                <th>标题</th>
+                <th>分类</th>
+                <th>日期</th>
+              </tr>
+            </thead>
+            <tbody><!-- 动态表格挂载点 --></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 详情视图：post-detail（JS 动态填充） -->
+    <section id="post-detail" class="d-none" aria-labelledby="post-detail-title">
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <article>
+            <h1 id="post-detail-title" class="mb-3"></h1>
+            <p id="post-meta" class="text-muted small"></p>
+            <img id="post-cover" class="img-fluid rounded mb-3" alt="封面">
+            <div id="post-content" class="content"><!-- 文章正文（contentHtml） --></div>
+          </article>
+
+          <!-- 上一篇 / 下一篇 -->
+          <div class="d-flex gap-2 mt-4">
+            <button id="prev-post" class="btn btn-outline-secondary btn-sm d-none">上一篇</button>
+            <button id="next-post" class="btn btn-outline-secondary btn-sm d-none">下一篇</button>
+            <button id="back-to-list" class="btn btn-primary btn-sm ms-auto">返回列表</button>
+          </div>
+
+          <hr class="my-4">
+
+          <!-- 评论区 -->
+          <section aria-labelledby="comments-title">
+            <h2 id="comments-title" class="h5 mb-3">评论</h2>
+
+            <div id="comment-list" class="vstack gap-3 mb-3">
+              <!-- 动态评论项挂载到这里 -->
+            </div>
+
+            <!-- 发表评论表单 -->
+            <form id="comment-form" class="row g-3 needs-validation" novalidate>
+              <input type="hidden" id="comment-slug" />
+              <div class="col-md-4">
+                <label for="comment-name" class="form-label">昵称</label>
+                <input id="comment-name" class="form-control" placeholder="你的称呼" required />
+                <div class="invalid-feedback">请输入昵称</div>
+              </div>
+              <div class="col-md-8">
+                <label for="comment-text" class="form-label">评论内容</label>
+                <input id="comment-text" class="form-control" placeholder="友善、具体、可被他人理解" required />
+                <div class="invalid-feedback">请输入评论内容</div>
+              </div>
+              <div class="col-12 d-flex gap-2">
+                <button class="btn btn-primary" type="submit">发表</button>
+                <button class="btn btn-outline-secondary" type="reset">重置</button>
+                <span class="ms-auto small text-muted">提示：评论仅保存在本机浏览器（localStorage）。</span>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <!-- 侧栏：可放置目录/广告/推荐 -->
+        <aside class="col-lg-4">
+          <div class="card">
+            <div class="card-header">关于本博客</div>
+            <div class="card-body">
+              <p class="m-0">教学用博客：列表/详情/评论/前后篇/SPA 路由/表单演示。</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 联系表单视图 -->
+    <section id="contact" aria-labelledby="contact-title" class="mb-5">
+      <h2 id="contact-title" class="mb-4">联系我（表单示例）</h2>
+      <form id="contact-form" class="card p-3 needs-validation" novalidate>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="your-name" class="form-label">你的名字</label>
+            <input id="your-name" class="form-control" required />
+            <div class="invalid-feedback">请输入名字</div>
+          </div>
+          <div class="col-md-6">
+            <label for="your-email" class="form-label">邮箱</label>
+            <input id="your-email" type="email" class="form-control" required />
+            <div class="invalid-feedback">请输入有效邮箱</div>
+          </div>
+          <div class="col-12">
+            <label for="your-message" class="form-label">留言</label>
+            <textarea id="your-message" class="form-control" rows="4" required></textarea>
+            <div class="invalid-feedback">请输入留言</div>
+          </div>
+          <div class="col-12 d-flex gap-2">
+            <button class="btn btn-primary" type="submit">发送</button>
+            <button class="btn btn-outline-secondary" type="reset">重置</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- 前端演示视图：XSS 安全演示 -->
+    <section id="demo" aria-labelledby="demo-title" class="mb-5">
+      <h2 id="demo-title" class="mb-4">前端演示（XSS 对比）</h2>
+
+      <form id="message-form" class="row g-3">
+        <div class="col-md-4">
+          <label for="xss-name" class="form-label">昵称</label>
+          <input id="xss-name" class="form-control" placeholder="小明" />
+        </div>
+        <div class="col-md-8">
+          <label for="xss-message" class="form-label">留言</label>
+          <input id="xss-message" class="form-control" placeholder="试试在这输入 <script>alert('XSS')</script>" />
+        </div>
+        <div class="col-12">
+          <button class="btn btn-outline-primary" type="submit">提交（演示）</button>
+        </div>
+      </form>
+
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">❌ 不安全（innerHTML 直接插入）</div>
+            <div class="card-body">
+              <div id="unsafe-display" class="border rounded p-2"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mt-3 mt-md-0">
+          <div class="card">
+            <div class="card-header">✅ 安全（textContent 转义输出）</div>
+            <div class="card-body">
+              <div id="safe-display" class="border rounded p-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-top bg-light py-4">
+    <div class="container d-flex align-items-center justify-content-between">
+      <p class="m-0">© 2024 My Blog · 教学增强版</p>
+      <p class="m-0 text-black-50">
+        苏州经贸职业技术学院　
+        <a href="mailto:xjshen@szjm.edu.cn">xjshen@szjm.edu.cn</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="scripts/script.js"></script>
+</body>
+</html>

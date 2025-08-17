@@ -1,0 +1,64 @@
+/* 课程增强样式：配合演示区块使用 */
+
+/* 顶部图像横幅 */
+.top-img {
+  background-image: url("../assets/topimg.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 40vh;
+  position: relative;
+}
+.top-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+}
+.top-img > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* 卡片图片示例（已有项目中的尺寸保持不变） */
+.card-img-top {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+/* Flexbox 演示容器与子项 */
+.flex-demo {
+  display: flex;
+  gap: 12px;
+  min-height: 120px;
+  background: #f8f9fa;
+}
+.flex-demo .item {
+  background: #e9ecef;
+  border: 2px solid #ced4da;
+  border-radius: .5rem;
+  padding: 12px 16px;
+  min-width: 60px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* 表单与反馈 */
+#contact-form .form-control:focus,
+#contact-form .form-select:focus {
+  box-shadow: 0 0 0 .25rem rgba(13,110,253,.25);
+}
+
+/* XSS 演示区 */
+#unsafe-display, #safe-display {
+  min-height: 48px;
+  background: #fff;
+}
+
+/* 小屏优化 */
+@media (max-width: 576px) {
+  .flex-demo {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
