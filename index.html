@@ -1,0 +1,222 @@
+<!-- ==== 修订标记：导航移动端可见性修复（由助手生成）==== -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="教学用开源个人博客（SPA版），覆盖HTML/CSS/JS课程要点与文章详情" />
+  <title>My Blog · 教学增强版（SPA）</title>
+  <link href="styles/core.css" rel="stylesheet" />
+</head>
+<body>
+  <!-- header/nav 语义化 -->
+  <header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light container">
+      <a class="navbar-brand" href="#"><i class="bi bi-pencil-square"></i> My Blog</a>
+      <!-- 修复：完整的 Bootstrap 折叠按钮 -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+              aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navMain" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#/">文章</a></li>
+          <li class="nav-item"><a class="nav-link" href="#/contact">联系表单</a></li>
+          <li class="nav-item"><a class="nav-link" href="#/demo">前端演示</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 顶部 banner -->
+  <section class="top-img text-white d-flex align-items-center">
+    <div class="container py-5">
+      <h1 class="display-5 fw-bold">web前端教学</h1>
+      <p class="lead mb-0">HTML/CSS/JS</p>
+    </div>
+  </section>
+
+  <main id="main-content" class="container my-5">
+    <!-- 列表视图 -->
+    <section id="posts" aria-labelledby="posts-title" class="mb-5">
+      <h2 id="posts-title" class="mb-4">精选文章</h2>
+      <div class="row g-4"><!-- 动态卡片挂载点 --></div>
+      <aside class="alert alert-secondary mt-4" role="note">
+        <strong>提示：</strong> 本列表通过脚本从 <code>assets/articles.json</code> 自动渲染。
+      </aside>
+      <div class="mt-4">
+        <h3 class="h5 mb-3">文章一览（表格示例）</h3>
+        <div class="table-responsive">
+          <table class="table table-striped align-middle" id="post-table">
+            <thead>
+              <tr><th scope="col">编号</th><th scope="col">标题</th><th scope="col">分类</th><th scope="col">发布日期</th></tr>
+            </thead>
+            <tbody><!-- 动态表格挂载点 --></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 详情视图 -->
+    <section id="post-detail" class="mb-5 d-none" aria-labelledby="post-detail-title">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 id="post-detail-title" class="mb-0"></h2>
+        <div class="d-flex gap-2">
+          <button id="prev-post" class="btn btn-outline-secondary btn-sm d-none">上一篇</button>
+          <button id="next-post" class="btn btn-outline-secondary btn-sm d-none">下一篇</button>
+          <button id="back-to-list" class="btn btn-primary btn-sm">返回列表</button>
+        </div>
+      </div>
+      <p class="text-muted" id="post-meta"></p>
+      <img id="post-cover" alt="" class="img-fluid rounded mb-3" />
+      <article id="post-content" class="mb-4"></article>
+
+      <!-- 评论模块 -->
+      <section id="comments" aria-labelledby="comments-title" class="card p-3">
+        <h3 id="comments-title" class="h5 mb-3">评论</h3>
+        <div id="comment-list" class="vstack gap-3 mb-3"></div>
+        <form id="comment-form" class="row g-3 needs-validation" novalidate>
+          <input type="hidden" id="comment-slug" />
+          <div class="col-md-4">
+            <label for="comment-name" class="form-label">昵称</label>
+            <input id="comment-name" class="form-control" placeholder="你的称呼" required />
+            <div class="invalid-feedback">请输入昵称</div>
+          </div>
+          <div class="col-md-8">
+            <label for="comment-text" class="form-label">评论内容</label>
+            <input id="comment-text" class="form-control" placeholder="友善、具体、可被他人理解" required />
+            <div class="invalid-feedback">请输入评论内容</div>
+          </div>
+          <div class="col-12 d-flex gap-2">
+            <button class="btn btn-primary" type="submit">发表</button>
+            <button class="btn btn-outline-secondary" type="reset">重置</button>
+            <span class="ms-auto small text-muted">提示：评论仅保存在本机浏览器（localStorage）。</span>
+          </div>
+        </form>
+      </section>
+    </section>
+
+    <!-- 联系表单视图 -->
+    <section id="contact" aria-labelledby="contact-title" class="mb-5">
+      <h2 id="contact-title" class="mb-4">联系我（表单示例）</h2>
+      <form id="contact-form" class="card p-3 needs-validation" novalidate>
+        <fieldset>
+          <legend class="h5 mb-3">留言</legend>
+          <div class="row g-3">
+            <div class="col-md-6"><label for="name" class="form-label">姓名</label><input id="name" name="name" class="form-control" placeholder="你的名字" required></div>
+            <div class="col-md-6"><label for="topic" class="form-label">主题</label>
+              <select id="topic" name="topic" class="form-select" required>
+                <option value="" selected disabled>请选择主题</option><option value="入门">入门</option><option value="布局">布局</option><option value="安全">安全</option>
+              </select>
+            </div>
+            <div class="col-12"><label for="message" class="form-label">留言内容</label><textarea id="message" name="message" rows="4" class="form-control" placeholder="说点什么…" required></textarea></div>
+            <div class="col-12 d-flex gap-2">
+              <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i> 提交</button>
+              <button class="btn btn-outline-secondary" type="reset">重置</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <div id="contact-result" class="mt-3" aria-live="polite"></div>
+    </section>
+
+    <!-- 前端演示视图 -->
+    <section id="demo" aria-labelledby="demo-title" class="mb-5">
+      <h2 id="demo-title" class="mb-4">前端交互与布局演示</h2>
+
+      <!-- Flexbox 演示 -->
+      <div class="card p-3 mb-4">
+        <h3 class="h5">Flexbox 布局演示</h3>
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <label class="form-label mb-0">主轴对齐：</label>
+          <select id="justify" class="form-select form-select-sm w-auto">
+            <option value="flex-start">flex-start</option>
+            <option value="center" selected>center</option>
+            <option value="space-between">space-between</option>
+            <option value="space-around">space-around</option>
+            <option value="space-evenly">space-evenly</option>
+          </select>
+          <label class="form-label mb-0 ms-3">交叉轴对齐：</label>
+          <select id="align" class="form-select form-select-sm w-auto">
+            <option value="stretch">stretch</option>
+            <option value="flex-start">flex-start</option>
+            <option value="center" selected>center</option>
+            <option value="flex-end">flex-end</option>
+          </select>
+        </div>
+        <div id="flex-playground" class="flex-demo border rounded p-3">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+        <small class="text-muted">在 DevTools 中观察盒模型与布局属性的变化。</small>
+      </div>
+
+      <!-- BOM 操作示例（保留） -->
+      <div class="card p-3 mb-4">
+        <h3 class="h5">BOM 操作示例</h3>
+        <p id="bom-info" class="mb-2">当前地址：<code></code></p>
+        <button id="goto-top" class="btn btn-outline-primary btn-sm">返回顶部</button>
+        <button id="goto-baidu" class="btn btn-outline-secondary btn-sm">跳转到百度</button>
+      </div>
+
+      <!-- HTTP 状态码演示（保留） -->
+      <div class="card p-3 mb-4">
+        <h3 class="h5">HTTP 状态码演示</h3>
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <label class="form-label mb-0">选择状态码：</label>
+          <select id="status-select" class="form-select form-select-sm w-auto">
+            <option>200</option>
+            <option>302</option>
+            <option>404</option>
+          </select>
+          <button id="check-status" class="btn btn-primary btn-sm">发起请求</button>
+        </div>
+        <div id="http-result" class="small text-muted">在 Network 面板查看请求与响应头、Cookie 等。</div>
+      </div>
+
+      <!-- XSS 风险演示（保留逻辑：仅脚本输入时提示） -->
+      <div class="card p-3">
+        <h3 class="h5">XSS 风险演示（教学用）</h3>
+        <form id="message-form" class="row g-2">
+          <div class="col-sm-4"><input id="xss-name" class="form-control" placeholder="昵称，例如 Alice"></div>
+          <div class="col-sm-6"><input id="xss-message" class="form-control" placeholder='输入 &lt;script&gt;alert(1)&lt;/script&gt; 观察行为'></div>
+          <div class="col-sm-2 d-grid"><button class="btn btn-danger" type="submit">提交</button></div>
+        </form>
+        <div class="mt-3">
+          <p class="mb-1">不安全渲染（故意演示风险）：</p>
+          <div id="unsafe-display" class="border rounded p-2"></div>
+          <p class="mb-1 mt-3">安全渲染（textContent/转义）：</p>
+          <div id="safe-display" class="border rounded p-2"></div>
+          <small class="text-muted d-block mt-2">说明：现代浏览器通常不会执行通过 <code>innerHTML</code> 注入的 <code>&lt;script&gt;</code>，如未弹窗会给出错误提示。</small>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <!-- 页脚 -->
+  <footer class="py-4 bg-light">
+    <div class="container text-center">
+      <p class="m-0 text-black-50">苏州经贸职业技术学院　<a href="mailto:xjshen@szjm.edu.cn">xjshen@szjm.edu.cn</a></p>
+    </div>
+  </footer>
+
+  <!-- 引入 Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="scripts/script.js"></script>
+
+  <!-- 增强功能：点击导航链接后自动收起折叠菜单 -->
+  <script>
+  document.addEventListener('click', function (e) {
+    if (e.target.matches('.navbar-collapse .nav-link')) {
+      var nav = document.getElementById('navMain');
+      if (nav && window.bootstrap) {
+        window.bootstrap.Collapse.getOrCreateInstance(nav).hide();
+      }
+    }
+  });
+  </script>
+</body>
+</html>
