@@ -45,33 +45,50 @@ async function renderList() {
   if (!articlesCache) articlesCache = await loadArticles();
 
   const container = $('#posts .row');
-  const tbody = $('#post-table tbody');
-  if (!container || !tbody) return;
+  if (!container) return;
 
-  container.innerHTML = '';
-  tbody.innerHTML = '';
+  const searchInput = $('#search-input');
+  const categoryList = $('#category-list');
+  let currentCategory = '';
 
-  articlesCache.forEach((p, idx) => {
-    // 卡片
-    const card = document.createElement('div');
-    card.className = 'col-sm-6 col-lg-4';
-    card.innerHTML = `
-      <div class="card h-100 shadow-sm">
-        <img src="${p.cover || ''}" class="card-img-top" alt="${p.title}">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">${p.title}</h5>
-          <p class="card-text text-muted small mb-2">${p.category} · ${p.date}</p>
-          <p class="card-text flex-grow-1">${p.excerpt || ''}</p>
-          <a class="btn btn-primary mt-auto article-link" href="#/post?slug=${encodeURIComponent(p.slug)}">阅读全文</a>
-        </div>
-      </div>`;
-    container.appendChild(card);
+  function display(list) {
+    container.innerHTML = '';
+    list.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'col-sm-6 col-lg-4';
+      card.innerHTML = `
+        <div class="card h-100 shadow-sm">
+          <img src="${p.cover || ''}" class="card-img-top" alt="${p.title}" loading="lazy">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">${p.title}</h5>
+            <p class="card-text text-muted small mb-2">${p.category} · ${p.date}</p>
+            <p class="card-text flex-grow-1">${p.excerpt || ''}</p>
+            <a class="btn btn-primary mt-auto article-link" href="#/post?slug=${encodeURIComponent(p.slug)}">阅读全文</a>
+          </div>
+        </div>`;
+      container.appendChild(card);
+    });
+  }
 
-    // 表格
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${idx + 1}</td><td><a href="#/post?slug=${encodeURIComponent(p.slug)}">${p.title}</a></td><td>${p.category}</td><td>${p.date}</td>`;
-    tbody.appendChild(tr);
+  function applyFilters() {
+    const query = (searchInput?.value || '').trim().toLowerCase();
+    const list = articlesCache.filter(p => {
+      const matchCategory = !currentCategory || p.category === currentCategory;
+      const text = (p.title + (p.excerpt || '')).toLowerCase();
+      return matchCategory && (!query || text.includes(query));
+    });
+    display(list);
+  }
+
+  searchInput?.addEventListener('input', applyFilters);
+  categoryList?.addEventListener('click', e => {
+    const btn = e.target.closest('[data-category]');
+    if (!btn) return;
+    currentCategory = btn.dataset.category;
+    applyFilters();
   });
+
+  applyFilters();
 }
 
 async function renderDetail(params) {
