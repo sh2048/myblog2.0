@@ -26,36 +26,11 @@
   object-fit: cover;
 }
 
-/* Flexbox 演示容器与子项 */
-.flex-demo {
-  display: flex;
-  gap: 12px;
-  min-height: 120px;
-  background: #f8f9fa;
-}
-.flex-demo .item {
-  background: #e9ecef;
-  border: 2px solid #ced4da;
-  border-radius: .5rem;
-  padding: 12px 16px;
-  min-width: 60px;
-  text-align: center;
-  font-weight: 600;
-}
-
-
-/* XSS 演示区 */
-#unsafe-display, #safe-display {
-  min-height: 48px;
-  background: #fff;
-}
-
-/* 小屏优化 */
-@media (max-width: 576px) {
-  .flex-demo {
-    flex-direction: row;   /* 关键：保持横向，主轴对齐才有可分配空间 */
-    flex-wrap: wrap;       /* 可选：防止极窄屏溢出 */
-  }
+/* 导航链接字体颜色与品牌一致 */
+.navbar-nav .nav-link,
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: var(--bs-navbar-brand-color) !important;
 }
 
 
