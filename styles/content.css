@@ -43,11 +43,6 @@
   font-weight: 600;
 }
 
-/* 表单与反馈 */
-#contact-form .form-control:focus,
-#contact-form .form-select:focus {
-  box-shadow: 0 0 0 .25rem rgba(13,110,253,.25);
-}
 
 /* XSS 演示区 */
 #unsafe-display, #safe-display {

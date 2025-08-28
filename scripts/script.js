@@ -1,5 +1,5 @@
 // scripts/script.js
-// 去除“前端演示”相关代码；保留：SPA 路由、文章渲染、联系表单校验。
+// 去除“前端演示”相关代码；保留：SPA 路由与文章渲染。
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -8,7 +8,6 @@ const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 const routes = {
   '/': renderList,
   '/post': renderDetail,     // 使用 /post?slug=xxx
-  '/contact': renderContact,
 };
 
 function navigate(hash) {
@@ -40,7 +39,6 @@ let articlesCache = null;
 async function renderList() {
   $('#posts')?.classList.remove('d-none');
   $('#post-detail')?.classList.add('d-none');
-  $('#contact')?.classList.add('d-none');
   $('#about')?.classList.remove('d-none');
 
   if (!articlesCache) articlesCache = await loadArticles();
@@ -95,7 +93,6 @@ async function renderList() {
 async function renderDetail(params) {
   $('#posts')?.classList.add('d-none');
   $('#post-detail')?.classList.remove('d-none');
-  $('#contact')?.classList.add('d-none');
   $('#about')?.classList.add('d-none');
 
   if (!articlesCache) articlesCache = await loadArticles();
@@ -139,28 +136,3 @@ async function renderDetail(params) {
 
 }
 
-// ---------------- 联系表单 ----------------
-(() => {
-  const form = $("#contact-form");
-  const result = $("#contact-result");
-  if (!form) return;
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.classList.add("was-validated"); return; }
-    const data = new FormData(form);
-    const name = data.get("name");
-    const topic = data.get("topic");
-    const message = data.get("message");
-    result.textContent = `提交成功：${name}（主题：${topic}）说：“${message}”`;
-    form.reset();
-    form.classList.remove("was-validated");
-  });
-})();
-
-// ---------------- 跳转到联系/首页的入口逻辑 ----------------
-function renderContact() {
-  $('#posts')?.classList.add('d-none');
-  $('#post-detail')?.classList.add('d-none');
-  $('#contact')?.classList.remove('d-none');
-  $('#about')?.classList.add('d-none');
-}
