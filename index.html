@@ -35,30 +35,35 @@
   </section>
 
   <main id="main-content" class="container my-5">
-    <section id="about" class="mb-5">
-      <h2 class="mb-4">关于我</h2>
-      <p>作为一名教师，我始终相信——真正的课堂，不止是知识传授，更是陪伴学生成为更好的自己。</p>
-      <p>在这个博客中，我将记录教学中的点滴观察、课堂的精彩瞬间，也展示学生们在学习过程中的真实成长与成果。</p>
-      <p>我希望这不仅是我的成长日志，更是连接学生、家长与学校的一座桥梁。</p>
-      <p>我们正站在技术与教育的交汇点上，愿在这里，看到每一位学生，走出自己的独特路径。</p>
-    </section>
-
-    <!-- 列表视图 -->
-    <section id="posts" aria-labelledby="posts-title" class="mb-5">
-      <h2 id="posts-title" class="mb-4">精选文章</h2>
-      <div class="mb-3">
-        <input type="search" id="search-input" class="form-control" placeholder="站内搜索" />
+    <!-- 列表视图（文章 + 侧边栏） -->
+    <div id="list-view" class="row">
+      <div class="col-md-8">
+        <section id="posts" aria-labelledby="posts-title" class="mb-5">
+          <h2 id="posts-title" class="mb-4">最新文章</h2>
+          <div class="row g-4"><!-- 动态卡片挂载点 --></div>
+        </section>
       </div>
-      <div class="mb-4">
-        <h3 class="h5 mb-3">文章分类</h3>
-        <ul id="category-list" class="list-inline">
-          <li class="list-inline-item"><button class="btn btn-outline-primary btn-sm" data-category="学生作品">学生作品</button></li>
-          <li class="list-inline-item"><button class="btn btn-outline-primary btn-sm" data-category="成长片段">成长片段</button></li>
-          <li class="list-inline-item"><button class="btn btn-outline-primary btn-sm" data-category="教师随笔">教师随笔</button></li>
-        </ul>
-      </div>
-      <div class="row g-4"><!-- 动态卡片挂载点 --></div>
-    </section>
+      <aside id="sidebar" class="col-md-4">
+        <section id="about" class="mb-5">
+          <h2 class="mb-4">关于我</h2>
+          <p>作为一名教师，我始终相信——真正的课堂，不止是知识传授，更是陪伴学生成为更好的自己。</p>
+          <p>在这个博客中，我将记录教学中的点滴观察、课堂的精彩瞬间，也展示学生们在学习过程中的真实成长与成果。</p>
+          <p>我希望这不仅是我的成长日志，更是连接学生、家长与学校的一座桥梁。</p>
+          <p>我们正站在技术与教育的交汇点上，愿在这里，看到每一位学生，走出自己的独特路径。</p>
+        </section>
+        <div class="mb-3">
+          <input type="search" id="search-input" class="form-control" placeholder="站内搜索" />
+        </div>
+        <div class="mb-4">
+          <h3 class="h5 mb-3">文章分类</h3>
+          <ul id="category-list" class="list-inline">
+            <li class="list-inline-item"><button class="btn btn-outline-primary btn-sm" data-category="学生作品">学生作品</button></li>
+            <li class="list-inline-item"><button class="btn btn-outline-primary btn-sm" data-category="成长片段">成长片段</button></li>
+            <li class="list-inline-item"><button class="btn btn-outline-primary btn-sm" data-category="教师随笔">教师随笔</button></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
     <!-- 详情视图 -->
     <section id="post-detail" class="mb-5 d-none" aria-labelledby="post-detail-title">

@@ -37,9 +37,8 @@ async function loadArticles() {
 let articlesCache = null;
 
 async function renderList() {
-  $('#posts')?.classList.remove('d-none');
+  $('#list-view')?.classList.remove('d-none');
   $('#post-detail')?.classList.add('d-none');
-  $('#about')?.classList.remove('d-none');
 
   if (!articlesCache) articlesCache = await loadArticles();
 
@@ -54,7 +53,7 @@ async function renderList() {
     container.innerHTML = '';
     list.forEach(p => {
       const card = document.createElement('div');
-      card.className = 'col-sm-6 col-lg-4';
+      card.className = 'col-md-6';
       card.innerHTML = `
         <div class="card h-100 shadow-sm">
           <img src="${p.cover || ''}" class="card-img-top" alt="${p.title}" loading="lazy">
@@ -91,9 +90,8 @@ async function renderList() {
 }
 
 async function renderDetail(params) {
-  $('#posts')?.classList.add('d-none');
+  $('#list-view')?.classList.add('d-none');
   $('#post-detail')?.classList.remove('d-none');
-  $('#about')?.classList.add('d-none');
 
   if (!articlesCache) articlesCache = await loadArticles();
   const slug = params.get('slug') || '';
