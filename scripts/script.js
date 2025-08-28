@@ -41,6 +41,7 @@ async function renderList() {
   $('#posts')?.classList.remove('d-none');
   $('#post-detail')?.classList.add('d-none');
   $('#contact')?.classList.add('d-none');
+  $('#about')?.classList.remove('d-none');
 
   if (!articlesCache) articlesCache = await loadArticles();
 
@@ -95,6 +96,7 @@ async function renderDetail(params) {
   $('#posts')?.classList.add('d-none');
   $('#post-detail')?.classList.remove('d-none');
   $('#contact')?.classList.add('d-none');
+  $('#about')?.classList.add('d-none');
 
   if (!articlesCache) articlesCache = await loadArticles();
   const slug = params.get('slug') || '';
@@ -210,4 +212,5 @@ function renderContact() {
   $('#posts')?.classList.add('d-none');
   $('#post-detail')?.classList.add('d-none');
   $('#contact')?.classList.remove('d-none');
+  $('#about')?.classList.add('d-none');
 }

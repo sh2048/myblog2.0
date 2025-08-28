@@ -7,7 +7,7 @@
   <title>My Blog · 学生成长记录</title>
   <link href="styles/core.css" rel="stylesheet" />
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
   <header class="shadow-sm">
     <nav class="navbar navbar-expand-lg navbar-light container">
       <a class="navbar-brand" href="#"><i class="bi bi-pencil-square"></i> My Blog</a>
@@ -37,6 +37,14 @@
   </section>
 
   <main id="main-content" class="container my-5">
+    <section id="about" class="mb-5">
+      <h2 class="mb-4">关于我</h2>
+      <p>作为一名教师，我始终相信——真正的课堂，不止是知识传授，更是陪伴学生成为更好的自己。</p>
+      <p>在这个博客中，我将记录教学中的点滴观察、课堂的精彩瞬间，也展示学生们在学习过程中的真实成长与成果。</p>
+      <p>我希望这不仅是我的成长日志，更是连接学生、家长与学校的一座桥梁。</p>
+      <p>我们正站在技术与教育的交汇点上，愿在这里，看到每一位学生，走出自己的独特路径。</p>
+    </section>
+
     <!-- 列表视图 -->
     <section id="posts" aria-labelledby="posts-title" class="mb-5">
       <h2 id="posts-title" class="mb-4">精选文章</h2>
@@ -124,8 +132,14 @@
         </fieldset>
       </form>
       <div id="contact-result" class="mt-3" aria-live="polite"></div>
-    </section>
+  </section>
   </main>
+
+  <footer class="bg-light py-3 mt-auto">
+    <div class="container text-center text-secondary">
+      苏州经贸职业技术学院 <a href="mailto:xjshen@szjm.edu.cn">xjshen@szjm.edu.cn</a>
+    </div>
+  </footer>
 
   <script src="scripts/script.js"></script>
   <script>
