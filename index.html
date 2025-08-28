@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="教学用开源个人博客（SPA版），覆盖HTML/CSS/JS课程要点与文章详情" />
+  <title>My Blog · 学生成长记录</title>
+  <link href="styles/core.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light container">
+      <a class="navbar-brand" href="#"><i class="bi bi-pencil-square"></i> My Blog</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+              aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navMain" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#/">文章</a></li>
+          <li class="nav-item"><a class="nav-link" href="#/contact">联系表单</a></li>
+          <!-- 已移除：前端演示入口 -->
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.notion.so/web-240b5034f3d38096a900f1c096fbe7e3?source=copy_link"
+               target="_blank" rel="noopener">学习资源</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <section class="top-img text-white d-flex align-items-center">
+    <div class="container py-5">
+      <h1 class="display-5 fw-bold">前端成长工坊</h1>
+      <p class="lead mb-0">点亮课堂瞬间，我们一起见证学生成长每一步</p>
+    </div>
+  </section>
+
+  <main id="main-content" class="container my-5">
+    <!-- 列表视图 -->
+    <section id="posts" aria-labelledby="posts-title" class="mb-5">
+      <h2 id="posts-title" class="mb-4">精选文章</h2>
+      <div class="row g-4"><!-- 动态卡片挂载点 --></div>
+      <aside class="alert alert-secondary mt-4" role="note">
+        <strong>提示：</strong> 本列表通过脚本从 <code>assets/articles.json</code> 自动渲染。
+      </aside>
+      <div class="mt-4">
+        <h3 class="h5 mb-3">文章一览（表格示例）</h3>
+        <div class="table-responsive">
+          <table class="table table-striped align-middle" id="post-table">
+            <thead>
+              <tr><th scope="col">编号</th><th scope="col">标题</th><th scope="col">分类</th><th scope="col">发布日期</th></tr>
+            </thead>
+            <tbody><!-- 动态表格挂载点 --></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 详情视图 -->
+    <section id="post-detail" class="mb-5 d-none" aria-labelledby="post-detail-title">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 id="post-detail-title" class="mb-0"></h2>
+        <div class="d-flex gap-2">
+          <button id="prev-post" class="btn btn-outline-secondary btn-sm d-none">上一篇</button>
+          <button id="next-post" class="btn btn-outline-secondary btn-sm d-none">下一篇</button>
+          <button id="back-to-list" class="btn btn-primary btn-sm">返回列表</button>
+        </div>
+      </div>
+      <p class="text-muted" id="post-meta"></p>
+      <img id="post-cover" alt="" class="img-fluid rounded mb-3" />
+      <article id="post-content" class="mb-4"></article>
+
+      <!-- 评论模块 -->
+      <section id="comments" aria-labelledby="comments-title" class="card p-3">
+        <h3 id="comments-title" class="h5 mb-3">评论</h3>
+        <div id="comment-list" class="mb-3"></div>
+        <form id="comment-form" class="row g-2">
+          <div class="col-md-4">
+            <input type="text" id="cmt-name" class="form-control" placeholder="你的名字" required />
+          </div>
+          <div class="col-md-6">
+            <input type="text" id="cmt-text" class="form-control" placeholder="评论内容" required />
+          </div>
+          <div class="col-md-2 d-grid">
+            <button class="btn btn-primary" type="submit">发表</button>
+          </div>
+        </form>
+      </section>
+    </section>
+
+    <!-- 联系表单（保留） -->
+    <section id="contact" aria-labelledby="contact-title" class="mb-5 d-none">
+      <h2 id="contact-title" class="mb-4">联系我（表单示例）</h2>
+      <form id="contact-form" class="card p-3 needs-validation" novalidate>
+        <fieldset>
+          <legend class="h5 mb-3">留言</legend>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="name" class="form-label">姓名</label>
+              <input id="name" name="name" class="form-control" placeholder="你的名字" required>
+              <div class="invalid-feedback">请输入姓名</div>
+            </div>
+            <div class="col-md-6">
+              <label for="topic" class="form-label">主题</label>
+              <select id="topic" name="topic" class="form-select" required>
+                <option value="" selected disabled>请选择主题</option>
+                <option value="入门">入门</option>
+                <option value="布局">布局</option>
+                <option value="安全">安全</option>
+              </select>
+              <div class="invalid-feedback">请选择一个主题</div>
+            </div>
+            <div class="col-12">
+              <label for="message" class="form-label">留言内容</label>
+              <textarea id="message" name="message" rows="4" class="form-control" required></textarea>
+              <div class="invalid-feedback">请输入留言内容</div>
+            </div>
+            <div class="col-12 d-flex gap-2">
+              <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i> 提交</button>
+              <button class="btn btn-outline-secondary" type="reset">重置</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <div id="contact-result" class="mt-3" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script src="scripts/script.js"></script>
+  <script>
+  document.addEventListener('click', function (e) {
+    if (e.target.matches('.navbar-collapse .nav-link')) {
+      var nav = document.getElementById('navMain');
+      if (nav && window.bootstrap) {
+        window.bootstrap.Collapse.getOrCreateInstance(nav).hide();
+      }
+    }
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="联系表单 - My Blog" />
+  <title>联系表单 · My Blog</title>
+  <link href="styles/core.css" rel="stylesheet" />
+</head>
+<body>
+<header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light container">
+      <a class="navbar-brand" href="#"><i class="bi bi-pencil-square"></i> My Blog</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+              aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navMain" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html#/">首页</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">联系表单</a></li>
+          <li class="nav-item"><a class="nav-link" href="demo.html">前端演示</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://www.notion.so/web-240b5034f3d38096a900f1c096fbe7e3?source=copy_link" target="_blank" rel="noopener">学习资源</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+<section class="top-img text-white d-flex align-items-center">
+    <div class="container py-5">
+      <h1 class="display-5 fw-bold">web前端教学</h1>
+      <p class="lead mb-0">HTML/CSS/JS</p>
+    </div>
+  </section>
+<main id="main-content" class="container my-5">
+<section id="contact" aria-labelledby="contact-title" class="mb-5">
+      <h2 id="contact-title" class="mb-4">联系我（表单示例）</h2>
+      <form id="contact-form" class="card p-3 needs-validation" novalidate>
+        <fieldset>
+          <legend class="h5 mb-3">留言</legend>
+          <div class="row g-3">
+            <div class="col-md-6"><label for="name" class="form-label">姓名</label><input id="name" name="name" class="form-control" placeholder="你的名字" required></div><div class="col-md-6"><label for="email" class="form-label">电子邮件</label><input id="email" name="email" type="email" class="form-control" placeholder="yourname@example.com" autocomplete="email" required></div>
+            <div class="col-md-6"><label for="topic" class="form-label">主题</label>
+              <select id="topic" name="topic" class="form-select" required>
+                <option value="" selected disabled>请选择主题</option><option value="入门">入门</option><option value="布局">布局</option><option value="安全">安全</option>
+              </select>
+            </div>
+            <div class="col-12"><label for="message" class="form-label">留言内容</label><textarea id="message" name="message" rows="4" class="form-control" placeholder="说点什么…" required></textarea></div>
+            <div class="col-12 d-flex gap-2">
+              <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i> 提交</button>
+              <button class="btn btn-outline-secondary" type="reset">重置</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <div id="contact-result" class="mt-3" aria-live="polite"></div>
+    </section>
+</main>
+<script src="scripts/script.js"></script>
+
+  <script>
+  document.addEventListener('click', function (e) {
+    if (e.target.matches('.navbar-collapse .nav-link')) {
+      var nav = document.getElementById('navMain');
+      if (nav && window.bootstrap) {
+        window.bootstrap.Collapse.getOrCreateInstance(nav).hide();
+      }
+    }
+  });
+  </script>
+</body>
+</html>
