@@ -22,42 +22,40 @@
             <a class="nav-link" href="https://www.notion.so/web-240b5034f3d38096a900f1c096fbe7e3?source=copy_link"
                target="_blank" rel="noopener">学习资源</a>
           </li>
+          <li class="nav-item"><a class="nav-link" href="about.html">关于我</a></li>
         </ul>
       </div>
     </nav>
   </header>
 
-  <section class="top-img text-white d-flex align-items-center">
-    <div class="container py-5">
-      <h1 class="display-5 fw-bold">前端成长工坊</h1>
-      <p class="lead mb-0">点亮课堂瞬间，我们一起见证学生成长每一步</p>
-    </div>
-  </section>
-
   <main id="main-content" class="container my-5">
-    <section id="about" class="mb-5">
-      <h2 class="mb-4">关于我</h2>
-      <p>作为一名教师，我始终相信——真正的课堂，不止是知识传授，更是陪伴学生成为更好的自己。</p>
-      <p>在这个博客中，我将记录教学中的点滴观察、课堂的精彩瞬间，也展示学生们在学习过程中的真实成长与成果。</p>
-      <p>我希望这不仅是我的成长日志，更是连接学生、家长与学校的一座桥梁。</p>
-      <p>我们正站在技术与教育的交汇点上，愿在这里，看到每一位学生，走出自己的独特路径。</p>
-    </section>
-
     <!-- 列表视图 -->
-    <section id="posts" aria-labelledby="posts-title" class="mb-5">
-      <h2 id="posts-title" class="mb-4">精选文章</h2>
-      <div class="mb-3">
-        <input type="search" id="search-input" class="form-control" placeholder="站内搜索" />
+    <section id="posts" aria-labelledby="posts-title" class="row mb-5">
+      <div class="col-lg-8">
+        <h2 id="posts-title" class="mb-4">最新文章</h2>
+        <ul id="article-list" class="list-unstyled"></ul>
       </div>
-      <div class="mb-4">
-        <h3 class="h5 mb-3">文章分类</h3>
-        <ul id="category-list" class="list-inline">
-          <li class="list-inline-item"><button class="btn btn-outline-primary btn-sm" data-category="学生作品">学生作品</button></li>
-          <li class="list-inline-item"><button class="btn btn-outline-primary btn-sm" data-category="成长片段">成长片段</button></li>
-          <li class="list-inline-item"><button class="btn btn-outline-primary btn-sm" data-category="教师随笔">教师随笔</button></li>
-        </ul>
-      </div>
-      <div class="row g-4"><!-- 动态卡片挂载点 --></div>
+      <aside class="col-lg-4">
+        <div class="card mb-4 text-center">
+          <div class="card-body">
+            <img src="assets/blog1img.jpg" class="rounded-circle mb-3" alt="作者头像" width="100" height="100">
+            <p class="mb-1">热爱前端教学，记录学生成长。</p>
+            <p class="mb-3">分享课堂故事与实践。</p>
+            <a href="about.html" class="btn btn-outline-primary btn-sm">了解更多</a>
+          </div>
+        </div>
+        <div class="mb-4">
+          <input type="search" id="search-input" class="form-control" placeholder="站内搜索" />
+        </div>
+        <div class="mb-4">
+          <h3 class="h5 mb-3">热门标签</h3>
+          <ul id="category-list" class="list-inline">
+            <li class="list-inline-item"><button class="btn btn-outline-primary btn-sm" data-category="学生作品">学生作品</button></li>
+            <li class="list-inline-item"><button class="btn btn-outline-primary btn-sm" data-category="成长片段">成长片段</button></li>
+            <li class="list-inline-item"><button class="btn btn-outline-primary btn-sm" data-category="教师随笔">教师随笔</button></li>
+          </ul>
+        </div>
+      </aside>
     </section>
 
     <!-- 详情视图 -->

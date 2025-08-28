@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="个人简介" />
+  <title>关于我 · My Blog</title>
+  <link href="styles/core.css" rel="stylesheet" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light container">
+      <a class="navbar-brand" href="#"><i class="bi bi-pencil-square"></i> My Blog</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+              aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navMain" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html#/">首页</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.notion.so/web-240b5034f3d38096a900f1c096fbe7e3?source=copy_link"
+               target="_blank" rel="noopener">学习资源</a>
+          </li>
+          <li class="nav-item"><a class="nav-link active" href="about.html">关于我</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container my-5 flex-grow-1">
+    <section class="mb-5">
+      <h1 class="mb-4">关于我</h1>
+      <p>作为一名教师，我始终相信——真正的课堂，不止是知识传授，更是陪伴学生成为更好的自己。</p>
+      <p>在这个博客中，我将记录教学中的点滴观察、课堂的精彩瞬间，也展示学生们在学习过程中的真实成长与成果。</p>
+      <p>我希望这不仅是我的成长日志，更是连接学生、家长与学校的一座桥梁。</p>
+      <p>我们正站在技术与教育的交汇点上，愿在这里，看到每一位学生，走出自己的独特路径。</p>
+    </section>
+  </main>
+
+  <footer class="bg-light py-3 mt-auto">
+    <div class="container text-center text-secondary">
+      苏州经贸职业技术学院 <a href="mailto:xjshen@szjm.edu.cn">xjshen@szjm.edu.cn</a>
+    </div>
+  </footer>
+
+  <script src="scripts/script.js"></script>
+  <script>
+  document.addEventListener('click', function (e) {
+    if (e.target.matches('.navbar-collapse .nav-link')) {
+      var nav = document.getElementById('navMain');
+      if (nav && window.bootstrap) {
+        window.bootstrap.Collapse.getOrCreateInstance(nav).hide();
+      }
+    }
+  });
+  </script>
+</body>
+</html>
+
