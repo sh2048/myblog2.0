@@ -39,11 +39,10 @@ let articlesCache = null;
 async function renderList() {
   $('#posts')?.classList.remove('d-none');
   $('#post-detail')?.classList.add('d-none');
-  $('#about')?.classList.remove('d-none');
 
   if (!articlesCache) articlesCache = await loadArticles();
 
-  const container = $('#posts .row');
+  const container = $('#article-list');
   if (!container) return;
 
   const searchInput = $('#search-input');
@@ -53,19 +52,12 @@ async function renderList() {
   function display(list) {
     container.innerHTML = '';
     list.forEach(p => {
-      const card = document.createElement('div');
-      card.className = 'col-sm-6 col-lg-4';
-      card.innerHTML = `
-        <div class="card h-100 shadow-sm">
-          <img src="${p.cover || ''}" class="card-img-top" alt="${p.title}" loading="lazy">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">${p.title}</h5>
-            <p class="card-text text-muted small mb-2">${p.category} · ${p.date}</p>
-            <p class="card-text flex-grow-1">${p.excerpt || ''}</p>
-            <a class="btn btn-primary mt-auto article-link" href="#/post?slug=${encodeURIComponent(p.slug)}">阅读全文</a>
-          </div>
-        </div>`;
-      container.appendChild(card);
+      const li = document.createElement('li');
+      li.className = 'mb-3';
+      li.innerHTML = `
+        <a class="h5 d-block" href="#/post?slug=${encodeURIComponent(p.slug)}">${p.title}</a>
+        <p class="text-muted small mb-0">${p.category} · ${p.date}</p>`;
+      container.appendChild(li);
     });
   }
 
@@ -93,7 +85,6 @@ async function renderList() {
 async function renderDetail(params) {
   $('#posts')?.classList.add('d-none');
   $('#post-detail')?.classList.remove('d-none');
-  $('#about')?.classList.add('d-none');
 
   if (!articlesCache) articlesCache = await loadArticles();
   const slug = params.get('slug') || '';
