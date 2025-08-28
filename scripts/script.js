@@ -1,5 +1,5 @@
 // scripts/script.js
-// 去除“前端演示”相关代码；保留：SPA 路由、文章渲染、评论(localStorage)、联系表单校验。
+// 去除“前端演示”相关代码；保留：SPA 路由、文章渲染、联系表单校验。
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -137,56 +137,6 @@ async function renderDetail(params) {
   if (hasPrev) prev.onclick = () => location.hash = `#/post?slug=${encodeURIComponent(articlesCache[idx-1].slug)}`;
   if (hasNext) next.onclick = () => location.hash = `#/post?slug=${encodeURIComponent(articlesCache[idx+1].slug)}`;
 
-  // 评论
-  mountComments(slug);
-}
-
-// ---------------- 评论（localStorage） ----------------
-function storageKey(slug) { return `blog-comments:${slug}`; }
-
-function readComments(slug) {
-  try { return JSON.parse(localStorage.getItem(storageKey(slug)) || '[]'); }
-  catch { return []; }
-}
-
-function writeComments(slug, list) {
-  localStorage.setItem(storageKey(slug), JSON.stringify(list));
-}
-
-function mountComments(slug) {
-  const listEl = $('#comment-list');
-  const form = $('#comment-form');
-  if (!listEl || !form) return;
-
-  function render() {
-    const list = readComments(slug);
-    listEl.innerHTML = list.map(c => `
-      <div class="border rounded p-2 mb-2">
-        <div class="small text-muted">${c.name} · ${new Date(c.time).toLocaleString()}</div>
-        <div>${escapeHTML(c.text)}</div>
-      </div>
-    `).join('');
-  }
-
-  form.onsubmit = (e) => {
-    e.preventDefault();
-    const name = $('#cmt-name').value.trim();
-    const text = $('#cmt-text').value.trim();
-    if (!name || !text) return;
-    const list = readComments(slug);
-    list.push({ name, text, time: Date.now() });
-    writeComments(slug, list);
-    $('#cmt-text').value = '';
-    render();
-  };
-
-  render();
-}
-
-function escapeHTML(str) {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
 }
 
 // ---------------- 联系表单 ----------------
