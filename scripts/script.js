@@ -133,7 +133,7 @@ async function renderDetail(params) {
   if (hasNext) next.onclick = () => location.hash = `#/post?slug=${encodeURIComponent(articlesCache[idx+1].slug)}`;
 
   // 缩放文章内图片至原始尺寸的 2/3
-  const ratio = 2 / 3;
+  const ratio = 1 / 2;
   $$('#post-detail img').forEach(img => {
     const applySize = () => {
       img.style.width = img.naturalWidth * ratio + 'px';
