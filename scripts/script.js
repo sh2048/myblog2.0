@@ -132,5 +132,19 @@ async function renderDetail(params) {
   if (hasPrev) prev.onclick = () => location.hash = `#/post?slug=${encodeURIComponent(articlesCache[idx-1].slug)}`;
   if (hasNext) next.onclick = () => location.hash = `#/post?slug=${encodeURIComponent(articlesCache[idx+1].slug)}`;
 
+  // 缩放文章内图片至原始尺寸的 2/3
+  const ratio = 2 / 3;
+  $$('#post-detail img').forEach(img => {
+    const applySize = () => {
+      img.style.width = img.naturalWidth * ratio + 'px';
+      img.style.height = img.naturalHeight * ratio + 'px';
+    };
+    if (img.complete) {
+      applySize();
+    } else {
+      img.addEventListener('load', applySize, { once: true });
+    }
+  });
+
 }
 
